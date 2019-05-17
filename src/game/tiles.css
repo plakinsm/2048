@@ -1,0 +1,115 @@
+.tile {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 22%;
+	height: 22%;
+	border-radius: 4%;
+	transition-duration: .3s;
+	z-index: 10;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 2em;
+	font-weight: bold;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	background-color: #ff00c8;
+	color: #fff;
+}
+
+
+.tile--2 {
+	background-color: #d5d5d5;
+	color: #000;
+}
+
+.tile--4 {
+	background-color: #ffb9b9;
+	color: #000;
+}
+
+.tile--8 {
+	background-color: #fffab9;
+	color: #000;
+}
+
+.tile--8 {
+	background-color: #c5ffb9;
+	color: #000;
+}
+
+.tile--16 {
+	background-color: #b9f1ff;
+	color: #000;
+}
+
+.tile--32 {
+	background-color: #fdb9ff;
+	color: #000;
+}
+
+.tile--64 {
+	background-color: #ffbc9e;
+	color: #000;
+}
+
+.tile--128 {
+	background-color: #a89eff;
+	color: #000;
+}
+
+.tile--256 {
+	background-color: #fff56d;
+	color: #000;
+}
+
+.tile--512 {
+	background-color: #ff6db6;
+	color: #000;
+}
+
+.tile--1024 {
+	background-color: #ffd20a;
+	color: #000;
+}
+
+.tile--2048 {
+	background-color: #000000;
+	color: #fff;
+}
+
+
+.tile--row-1 {
+	top: 0%;
+}
+
+.tile--row-2 {
+	top: 26%;
+}
+
+.tile--row-3 {
+	top: 52%;
+}
+
+.tile--row-4 {
+	top: 78%;
+}
+
+
+
+.tile--col-1 {
+	left: 0%;
+}
+
+.tile--col-2 {
+	left: 26%;
+}
+
+.tile--col-3 {
+	left: 52%;
+}
+
+.tile--col-4 {
+	left: 78%;
+}
+
