@@ -18,7 +18,56 @@ export default class Game {
 		this.generateGrid();
 		this.generateTile();
 		this.generateTile();
+
+		this.touchX = null;
+		this.touchY = null;
+		this.touchSize = 70;
+		this.movedByTouch = false;
+		this.container.addEventListener('touchstart', (e) => {
+			this.movedByTouch = false;
+			this.touchX = e.touches[0].clientX;
+			this.touchY = e.touches[0].clientY;
+			console.log('fd');
+		})
+
+		this.container.addEventListener('touchend', (e) => {
+			this.movedByTouch = false;
+		})
+
+		this.container.addEventListener('touchmove', this.touchMove);
 	}
+
+	touchMove = (e) => {
+		e.preventDefault();
+		if (this.movedByTouch) {
+			return;
+		}
+
+		if (this.flag) {
+			return;
+		}
+
+		const x = e.touches[0].clientX;
+		const y = e.touches[0].clientY;
+		if (this.touchX - x < -this.touchSize) {
+			e.key = "ArrowRight";
+			this.movedByTouch = true;
+		} else if (this.touchX - x > this.touchSize) {
+			e.key = "ArrowLeft";
+			this.movedByTouch = true;
+		} else if (this.touchY - y < -this.touchSize) {
+			e.key = "ArrowDown";
+			this.movedByTouch = true;
+		} else if (this.touchY - y > this.touchSize) {
+			e.key = "ArrowUp";
+			this.movedByTouch = true;
+		} 
+		if (this.movedByTouch) {
+			this.keyDownHandler(e);
+		}
+		
+		
+	}	
 
 	switchTile = (tile1, tile2, tile3) => {
 		this.flag = true;
@@ -26,6 +75,7 @@ export default class Game {
 			tile1.remove();
 			tile2.remove();
 			tile3.style.display = 'flex';
+			tile3.classList.add('showed');
 			if (!this.created) {
 				this.generateTile();
 				this.created = true;

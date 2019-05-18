@@ -1,10 +1,13 @@
 .container {
 	width: 400px;
-	height: 400px;
 	position: relative;
 	background-color: #bbada0;
 	border-radius: 4px;
 	box-sizing: border-box;
+}
+
+.wrapper {
+	padding: 50% 0;
 }
 
 .grid {
