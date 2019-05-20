@@ -2,14 +2,17 @@ import './style.css';
 import './tiles.css';
 
 export default class Game {
-	constructor(el) {
+	constructor(el, scoreDisplay) {
 		this.container = el;
+		this.scoreDisplay = scoreDisplay;
 		this.grid = [
 			[0, 0, 0, 0],
 			[0, 0, 0, 0],
 			[0, 0, 0, 0],
 			[0, 0, 0, 0],
 		];
+		this.score(0);
+		console.log(this.score());
 		this.flag = false;
 		this.wasSwitch = false;
 		this.wasMove = false;
@@ -21,13 +24,12 @@ export default class Game {
 
 		this.touchX = null;
 		this.touchY = null;
-		this.touchSize = 70;
+		this.touchSize = 50;
 		this.movedByTouch = false;
 		this.container.addEventListener('touchstart', (e) => {
 			this.movedByTouch = false;
 			this.touchX = e.touches[0].clientX;
 			this.touchY = e.touches[0].clientY;
-			console.log('fd');
 		})
 
 		this.container.addEventListener('touchend', (e) => {
@@ -35,6 +37,18 @@ export default class Game {
 		})
 
 		this.container.addEventListener('touchmove', this.touchMove);
+	}
+
+	restart = () => {
+		this.grid = [
+			[0, 0, 0, 0],
+			[0, 0, 0, 0],
+			[0, 0, 0, 0],
+			[0, 0, 0, 0],
+		];
+		this.tileContainer.innerHTML = null;
+		this.generateTile();
+		this.generateTile();
 	}
 
 	touchMove = (e) => {
@@ -69,13 +83,23 @@ export default class Game {
 		
 	}	
 
-	switchTile = (tile1, tile2, tile3) => {
+	score = (newScore) => {
+		if (newScore === undefined) {
+			return this._score;
+		}
+		
+		this._score = +newScore;
+		this.scoreDisplay.innerText = this._score;
+	}
+
+	switchTile = (tile1, tile2, tile3, score) => {
 		this.flag = true;
 		tile1.addEventListener('transitionend', () => {
 			tile1.remove();
 			tile2.remove();
 			tile3.style.display = 'flex';
 			tile3.classList.add('showed');
+			this.score(this.score() + score);
 			if (!this.created) {
 				this.generateTile();
 				this.created = true;
@@ -108,9 +132,8 @@ export default class Game {
 						this.grid[i][j].className = classes;
 
 						const newTile = this.generateTile(score * 2, j + 1, index + 1, true);
-						
 
-						this.switchTile(this.grid[i][j], this.grid[index][j], newTile);
+						this.switchTile(this.grid[i][j], this.grid[index][j], newTile, score * 2);
 						this.grid[i][j] = 0;
 						this.grid[index][j] = newTile;
 						
@@ -153,9 +176,8 @@ export default class Game {
 						this.grid[i][j].className = classes;
 
 						const newTile = this.generateTile(score * 2, j + 1, index + 1, true);
-						
 
-						this.switchTile(this.grid[i][j], this.grid[index][j], newTile);
+						this.switchTile(this.grid[i][j], this.grid[index][j], newTile, score * 2);
 						this.grid[i][j] = 0;
 						this.grid[index][j] = newTile;
 						
@@ -197,9 +219,8 @@ export default class Game {
 						this.grid[i][j].className = classes;
 
 						const newTile = this.generateTile(score * 2, index + 1, i + 1, true);
-						
 
-						this.switchTile(this.grid[i][j], this.grid[i][index], newTile);
+						this.switchTile(this.grid[i][j], this.grid[i][index], newTile, score * 2);
 						this.grid[i][j] = 0;
 						this.grid[i][index] = newTile;
 						
@@ -241,9 +262,8 @@ export default class Game {
 						this.grid[i][j].className = classes;
 
 						const newTile = this.generateTile(score * 2, index + 1, i + 1, true);
-						
 
-						this.switchTile(this.grid[i][j], this.grid[i][index], newTile);
+						this.switchTile(this.grid[i][j], this.grid[i][index], newTile, score * 2);
 						this.grid[i][j] = 0;
 						this.grid[i][index] = newTile;
 						

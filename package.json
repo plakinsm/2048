@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-		"start": "webpack-dev-server --host 192.168.31.9 --port 5002 --mode development --open --hot",
+		"start": "webpack-dev-server --host 10.203.65.112 --port 5002 --mode development --open --hot",
 		"build": "webpack --mode production"
 	},
 	"author": "plakins",

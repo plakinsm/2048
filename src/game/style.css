@@ -1,9 +1,11 @@
 .container {
-	width: 400px;
+	width: 100%;
+	max-width: 400px;
 	position: relative;
 	background-color: #bbada0;
 	border-radius: 4px;
 	box-sizing: border-box;
+	user-select: none;
 }
 
 .wrapper {
