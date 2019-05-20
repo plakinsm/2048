@@ -7,11 +7,3 @@ window.addEventListener('load', () => {
 		game.restart();
 	})
 })
-
-
-var start = 0;
-
-
-window.addEventListener('scroll', (e) => {
-	e.preventDefault();
-})
