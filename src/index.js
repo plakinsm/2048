@@ -7,3 +7,8 @@ window.addEventListener('load', () => {
 		game.restart();
 	})
 })
+
+document.body.style.height = document.documentElement.clientHeight + 'px';
+window.addEventListener('resize', () => {
+	document.body.style.height = document.documentElement.clientHeight + 'px';
+})
